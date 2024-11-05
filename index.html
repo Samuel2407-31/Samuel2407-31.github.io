@@ -120,4 +120,36 @@
             { producto_id: 2, nombre_producto: 'Aceite Vegetal', precio_venta: 64.00, categoria_id: 1, stock: 10 },
             { producto_id: 3, nombre_producto: 'Café Molido', precio_venta: 32.00, categoria_id: 2, stock: 15 },
             { producto_id: 4, nombre_producto: 'Leche', precio_venta: 15.00, categoria_id: 1, stock: 30 },
-            { producto_id: 5, nombre_producto: 'Jugo de Naranja', precio_
+            { producto_id: 5, nombre_producto: 'Jugo de Naranja', precio_venta:  12.00, categoria_id : 2, stock: 25 },
+            { producto_id: 6, nombre_producto: 'Galletas', precio_venta: 18.00, categoria_id: 1, stock: 40 },
+            { producto_id: 7, nombre_producto: 'Agua Mineral', precio_venta: 5.00, categoria_id: 2, stock: 100 },
+            { producto_id: 8, nombre_producto: 'Arroz', precio_venta: 45.00, categoria_id: 1, stock: 15 },
+            { producto_id: 9, nombre_producto: 'Pasta', precio_venta: 20.00, categoria_id: 1, stock: 25 },
+            { producto_id: 10, nombre_producto: 'Pan Dulce', precio_venta: 25.00, categoria_id: 1, stock: 10 },
+            { producto_id: 11, nombre_producto: 'Galleta de Huevo', precio_venta: 40.00, categoria_id: 1, stock: 7 },
+            { producto_id: 12, nombre_producto: 'Pastica', precio_venta: 45.00, categoria_id: 1, stock: 7 },
+            { producto_id: 13, nombre_producto: 'Bandeja de Tequeños', precio_venta: 85.00, categoria_id: 1, stock: 5 },
+            { producto_id: 14, nombre_producto: 'Orejón', precio_venta: 45.00, categoria_id: 1, stock: 5 },
+            { producto_id: 15, nombre_producto: 'Pan de Guayaba', precio_venta: 25.00, categoria_id: 1, stock: 7.5 },
+        ];
+
+        const tableBody = document.getElementById('productsTableBody');
+
+        products.forEach((product) => {
+            const row = document.createElement('tr');
+
+            row.innerHTML = `
+                <td>${product.producto_id}</td>
+                <td>${product.nombre_producto}</td>
+                <td>${product.precio_venta}</td>
+                <td>${product.categoria_id}</td>
+                <td>${product.stock}</td>
+            `;
+
+            tableBody.appendChild(row);
+        });
+    }
+</script>
+
+</body>
+</html>
