@@ -1,64 +1,120 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inversiones 3K - Inicio de Sesión</title>
     <style>
+        /* Estilos generales */
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background-color: #f0f0f0; /* Color de fondo claro */
+            color: #333; /* Color del texto */
+            margin: 0;
+            padding: 20px;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
             flex-direction: column;
         }
+
+        /* Contenedor de inicio de sesión y productos */
         .login-container, .products-container {
-            background-color: white;
+            background-color: #003366; /* Azul oscuro */
             padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px; /* Bordes redondeados */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Sombra */
             width: 300px;
+            color: white; /* Color del texto en el contenedor */
         }
+
         h2 {
             text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.8em; /* Tamaño de fuente más grande */
+            font-weight: 300; /* Peso de fuente ligero */
         }
+
+        /* Estilos de los campos de entrada */
         input[type="text"], input[type="password"] {
             width: 100%;
             padding: 10px;
             margin: 10px 0;
             border: 1px solid #ccc;
-            border-radius: 5px;
+            border-radius: 5px; /* Bordes redondeados */
+            transition: border-color 0.3s ease; /* Transición suave */
         }
+
+        input[type="text"]:focus, input[type="password"]:focus {
+            border-color: #007bff; /* Color del borde al enfocar */
+            outline: none; /* Sin contorno */
+        }
+
+        /* Estilos del botón */
         button {
             width: 100%;
             padding: 10px;
-            background-color: #28a745;
+            background-color: #007bff; /* Color de fondo del botón */
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 5px; /* Bordes redondeados */
             cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease; /* Transición suave */
         }
+
         button:hover {
-            background-color: #218838;
+            background-color: #0056b3; /* Color de fondo del botón al pasar el mouse */
+            transform: translateY(-2px); /* Efecto de elevación */
         }
+
         .products-container {
             display: none; /* Ocultar inicialmente */
         }
+
+        /* Estilos de la tabla */
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Sombra de la tabla */
+            border-radius: 10px; /* Bordes redondeados */
+            overflow: hidden; /* Para que los bordes redondeados se apliquen */
         }
+
         th, td {
-            border: 1px solid #ccc;
-            padding: 8px;
+            border: 1px solid #ccc; /* Bordes de la tabla */
+            padding: 12px;
             text-align: left;
+            transition: background-color 0.3s ease; /* Transición suave */
         }
+
         th {
-            background-color: #f2f2f2;
+            background-color: #007bff; /* Color de fondo de los encabezados */
+            color: white; /* Color del texto de los encabezados */
+            font-weight: 500; /* Peso de fuente medio */
+        }
+
+        tr:nth-child(even) {
+            background-color: #ffffff; /* Color de fondo de las filas pares (blanco) */
+            color: #333; /* Color del texto en filas pares */
+        }
+
+        tr:nth-child(odd) {
+            background-color: #d9e6f2; /* Color de fondo de las filas impares (gris claro) */
+            color: #333; /* Color del texto en filas impares */
+        }
+
+        tr:hover {
+            background-color: #c0c0c0; /* Color de fondo al pasar el mouse (más oscuro) */
+        }
+
+        /* Estilos de pie de página (si los tienes) */
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size:  0.9em;
+            color: #666;
         }
     </style>
 </head>
@@ -75,13 +131,14 @@
 </div>
 
 <div class="products-container" id="productsContainer">
-    <h2>Inventario</h2>
+    <h2>Inventario de Las 3K</h2> <!-- Título actualizado -->
+    <h3 id="welcomeMessage" style="text-align: center; color: #e0e0e0;"></h3> <!-- Mensaje de bienvenida -->
     <table>
         <thead>
             <tr>
                 <th>ID Producto</th>
                 <th>Nombre Producto</th>
-                <th>Precio Venta (Bs)</th>
+                <th>Precio Venta</th>
                 <th>Categoría ID</th>
                 <th>Stock</th>
             </tr>
@@ -108,6 +165,7 @@
         if (users[username] && users[username] === password) {
             document.querySelector('.login-container').style.display = 'none';
             document.querySelector('.products-container').style.display = 'block';
+            document.getElementById('welcomeMessage').innerText = '¡Bienvenido!'; // Mostrar mensaje de bienvenida
             loadProducts();
         } else {
             document.getElementById('message').innerText = 'Usuario o contraseña incorrectos.';
@@ -116,21 +174,16 @@
 
     function loadProducts() {
         const products = [
-            { producto_id: 1, nombre_producto: 'Caramelos', precio_venta: 1.00, categoria_id: 1, stock: 50 },
-            { producto_id: 2, nombre_producto: 'Aceite Vegetal', precio_venta: 64.00, categoria_id: 1, stock: 10 },
-            { producto_id: 3, nombre_producto: 'Café Molido', precio_venta: 32.00, categoria_id: 2, stock: 15 },
-            { producto_id: 4, nombre_producto: 'Leche', precio_venta: 15.00, categoria_id: 1, stock: 30 },
-            { producto_id: 5, nombre_producto: 'Jugo de Naranja', precio_venta:  12.00, categoria_id : 2, stock: 25 },
-            { producto_id: 6, nombre_producto: 'Galletas', precio_venta: 18.00, categoria_id: 1, stock: 40 },
-            { producto_id: 7, nombre_producto: 'Agua Mineral', precio_venta: 5.00, categoria_id: 2, stock: 100 },
-            { producto_id: 8, nombre_producto: 'Arroz', precio_venta: 45.00, categoria_id: 1, stock: 15 },
-            { producto_id: 9, nombre_producto: 'Pasta', precio_venta: 20.00, categoria_id: 1, stock: 25 },
-            { producto_id: 10, nombre_producto: 'Pan Dulce', precio_venta: 25.00, categoria_id: 1, stock: 10 },
-            { producto_id: 11, nombre_producto: 'Galleta de Huevo', precio_venta: 40.00, categoria_id: 1, stock: 7 },
-            { producto_id: 12, nombre_producto: 'Pastica', precio_venta: 45.00, categoria_id: 1, stock: 7 },
-            { producto_id: 13, nombre_producto: 'Bandeja de Tequeños', precio_venta: 85.00, categoria_id: 1, stock: 5 },
-            { producto_id: 14, nombre_producto: 'Orejón', precio_venta: 45.00, categoria_id: 1, stock: 5 },
-            { producto_id: 15, nombre_producto: 'Pan de Guayaba', precio_venta: 25.00, categoria_id: 1, stock: 7.5 },
+            { producto_id: 1, nombre_producto: 'Pan', precio_venta: 26.00, categoria_id: 1, stock: 20 },
+            { producto_id: 2, nombre_producto: 'Caramelos', precio_venta: 1.00, categoria_id: 1, stock: 50 },
+            { producto_id: 3, nombre_producto: 'Aceite Vegetal', precio_venta: 64.00, categoria_id: 1, stock: 10 },
+            { producto_id: 4, nombre_producto: 'Café Molido', precio_venta: 32.00, categoria_id: 2, stock: 15 },
+            { producto_id: 5, nombre_producto: 'Leche', precio_venta: 15.00, categoria_id: 1, stock: 30 },
+            { producto_id: 6, nombre_producto: 'Jugo de Naranja', precio_venta: 12.00, categoria_id: 2, stock: 25 },
+            { producto_id: 7, nombre_producto: 'Galletas', precio_venta: 18.00, categoria_id: 1, stock: 40 },
+            { producto_id: 8, nombre_producto: 'Agua Mineral', precio_venta: 5.00, categoria_id: 2, stock: 100 },
+            { producto_id: 9, nombre_producto: 'Arroz', precio_venta: 45.00, categoria_id: 1, stock: 15 },
+            { producto_id: 10, nombre_producto: 'Pasta', precio_venta: 20.00, categoria_id: 1, stock: 25 },
         ];
 
         const tableBody = document.getElementById('productsTableBody');
